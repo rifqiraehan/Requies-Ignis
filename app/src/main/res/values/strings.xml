@@ -3,4 +3,8 @@
     <string name="search">Search</string>
     <string name="not_found">😔\nJudul film tidak ditemukan.\nPeriksa kembali kueri pencarian anda.</string>
     <string name="looking_movie">Mau cari film apa hari ini?\n😊</string>
+    <string name="poster">Poster</string>
+    <string name="title">Title</string>
+    <string name="year">Year</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam hendrerit nisi sed sollicitudin pellentesque. Nunc posuere purus rhoncus pulvinar aliquam. Ut aliquet tristique nisl vitae volutpat. Nulla aliquet porttitor venenatis. Donec a dui et dui fringilla consectetur id nec massa. Aliquam erat volutpat. Sed ut dui ut lacus dictum fermentum vel tincidunt neque. Sed sed lacinia lectus. Duis sit amet sodales felis. Duis nunc eros, mattis at dui ac, convallis semper risus. In adipiscing ultrices tellus, in suscipit massa vehicula eu.</string>
 </resources>

@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.project.belajarapi.BuildConfig;
 import com.project.belajarapi.api.RetrofitClient;
 import com.project.belajarapi.api.ApiService;
 import com.project.belajarapi.data.model.Film;
@@ -32,7 +33,7 @@ public class MainViewModel extends ViewModel{
 
 
     public void setSearchMovies(String query) {
-        String apiKey = "8dc51159";
+        String apiKey = BuildConfig.API_KEY;
         listFilm.setValue(new ArrayList<>());
         isLoading.setValue(true);
         RetrofitClient.getApiService()

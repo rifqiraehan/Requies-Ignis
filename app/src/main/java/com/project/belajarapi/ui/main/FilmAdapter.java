@@ -1,5 +1,6 @@
 package com.project.belajarapi.ui.main;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -11,12 +12,14 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.project.belajarapi.R;
 import com.project.belajarapi.data.model.Film;
 import com.project.belajarapi.databinding.ItemFilmBinding;
+import com.project.belajarapi.ui.detail.DetailFilmActivity;
 
 import java.util.ArrayList;
 
 public class FilmAdapter extends RecyclerView.Adapter<FilmAdapter.FilmViewHolder> {
 
     private final ArrayList<Film> listFilm = new ArrayList<>();
+    private OnItemClickCallback onItemClickCallback;
 
     public void setListFilm(ArrayList<Film> films) {
         listFilm.clear();
@@ -36,6 +39,10 @@ public class FilmAdapter extends RecyclerView.Adapter<FilmAdapter.FilmViewHolder
         holder.bind(listFilm.get(position));
     }
 
+    public void setOnItemClickCallback(OnItemClickCallback onItemClickCallback) {
+        this.onItemClickCallback = onItemClickCallback;
+    }
+
     @Override
     public int getItemCount() {
         return listFilm.size();
@@ -50,13 +57,28 @@ public class FilmAdapter extends RecyclerView.Adapter<FilmAdapter.FilmViewHolder
         }
 
         public void bind(Film film) {
+            binding.getRoot().setOnClickListener(v -> {
+                if (onItemClickCallback != null) {
+                    onItemClickCallback.onItemClicked(film);
+                }
+            });
+
             Glide.with(binding.getRoot())
                 .load(film.getPoster())
+                .error(R.drawable.poster_not_found)
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .centerCrop()
                 .into(binding.ivFilm);
             binding.tvTitle.setText(film.getTitle());
             binding.tvYear.setText(film.getYear());
         }
+    }
+
+    public interface OnItemClickCallback {
+        void onItemClicked(Film data);
+    }
+
+    public static class DetailActivity {
+        public static final String EXTRA_FILM = "extra_film";
     }
 }

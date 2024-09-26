@@ -66,7 +66,6 @@ public class Film {
         this.imdbID = imdbID;
     }
 
-
     public ArrayList<Film> getSearch() {
         return Search;
     }
@@ -90,4 +89,5 @@ public class Film {
     public void setResponse(String Response) {
         this.Response = Response;
     }
+
 }

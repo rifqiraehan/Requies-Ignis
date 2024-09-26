@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.view.View;
 import com.project.belajarapi.R;
 import com.project.belajarapi.data.model.Film;
 import com.project.belajarapi.databinding.ActivityMainBinding;
+import com.project.belajarapi.ui.detail.DetailFilmActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +31,21 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        if(getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
+
         adapter = new FilmAdapter();
         adapter.notifyDataSetChanged();
+
+        adapter.setOnItemClickCallback(new FilmAdapter.OnItemClickCallback() {
+            @Override
+            public void onItemClicked(Film data) {
+                Intent intent = new Intent(MainActivity.this, DetailFilmActivity.class);
+                intent.putExtra(DetailFilmActivity.EXTRA_FILM, data.getImdbID());
+                startActivity(intent);
+            }
+        });
 
         viewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(MainViewModel.class);
 
