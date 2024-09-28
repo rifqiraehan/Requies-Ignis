@@ -9,17 +9,4 @@ public class FilmResponse {
         return Search;
     }
 
-    public void setSearch(ArrayList<Film> Search) {
-        this.Search = Search;
-    }
-    private ArrayList<Film> results;
-
-    public ArrayList<Film> getResults() {
-        return results;
-    }
-
-    public void setResults(ArrayList<Film> results) {
-        this.results = results;
-    }
-
 }

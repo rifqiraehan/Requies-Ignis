@@ -1,6 +1,5 @@
 package com.project.belajarapi.ui.main;
 
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -12,7 +11,6 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.project.belajarapi.R;
 import com.project.belajarapi.data.model.Film;
 import com.project.belajarapi.databinding.ItemFilmBinding;
-import com.project.belajarapi.ui.detail.DetailFilmActivity;
 
 import java.util.ArrayList;
 
@@ -76,9 +74,5 @@ public class FilmAdapter extends RecyclerView.Adapter<FilmAdapter.FilmViewHolder
 
     public interface OnItemClickCallback {
         void onItemClicked(Film data);
-    }
-
-    public static class DetailActivity {
-        public static final String EXTRA_FILM = "extra_film";
     }
 }

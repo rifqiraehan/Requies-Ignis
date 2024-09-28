@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClicked(Film data) {
                 Intent intent = new Intent(MainActivity.this, DetailFilmActivity.class);
                 intent.putExtra(DetailFilmActivity.EXTRA_FILM, data.getImdbID());
+                intent.putExtra(DetailFilmActivity.EXTRA_TITLE, data.getTitle());
                 startActivity(intent);
             }
         });

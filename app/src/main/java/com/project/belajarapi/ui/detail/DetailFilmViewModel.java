@@ -31,7 +31,7 @@ public class DetailFilmViewModel extends ViewModel {
 
         Log.d("DetailFilmViewModel", "setFilmDetail called with imdbID: " + imdbID);
         RetrofitClient.getApiService()
-                .getFilmDetail(apiKey, imdbID)
+                .getFilmDetail(apiKey, imdbID, "full")
                 .enqueue(new Callback<DetailFilmResponse>() {
                     @Override
                     public void onResponse(Call<DetailFilmResponse> call, Response<DetailFilmResponse> response) {

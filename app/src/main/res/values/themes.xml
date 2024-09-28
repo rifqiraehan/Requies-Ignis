@@ -9,7 +9,12 @@
         <item name="android:action">@color/colorPrimary</item>
     </style>
 
-    <color name="search_icon_color">@color/gray_dark</color>
+    <color name="icon_color">@color/gray_dark</color>
+    <color name="text_color">@color/gray_dark</color>
+
+    <style name="Theme.BelajarAPI.Detail" parent="Theme.BelajarAPI">
+        <item name="android:statusBarColor">@color/white_gray</item>
+    </style>
 
     <style name="Theme.BelajarAPI" parent="Base.Theme.BelajarAPI" />
 </resources>

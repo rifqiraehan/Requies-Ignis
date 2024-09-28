@@ -15,24 +15,20 @@ import com.project.belajarapi.databinding.ActivityDetailFilmBinding;
 public class DetailFilmActivity extends AppCompatActivity {
 
     public static final String EXTRA_FILM = "extra_film";
+    public static final String EXTRA_TITLE = "extra_title";
 
     private ActivityDetailFilmBinding binding;
-    private DetailFilmViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityDetailFilmBinding.inflate(getLayoutInflater());
 
-        if(getSupportActionBar() != null) {
-            getSupportActionBar().hide();
-        }
-
         setContentView(binding.getRoot());
 
         String imdbID = getIntent().getStringExtra(EXTRA_FILM);
 
-        viewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(DetailFilmViewModel.class);
+        DetailFilmViewModel viewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(DetailFilmViewModel.class);
 
         viewModel.setFilmDetail(imdbID);
 
@@ -43,6 +39,12 @@ public class DetailFilmActivity extends AppCompatActivity {
                 binding.tvTitle.setText(it.getTitle());
                 binding.tvYear.setText(it.getYear());
                 binding.tvPlot.setText(it.getPlot());
+                binding.tvRated.setText(it.getRated());
+                binding.tvDuration.setText(it.getRuntime());
+                binding.tvType.setText(it.getType());
+                binding.tvGenre.setText(it.getGenre());
+                binding.tvScore.setText(it.getImdbRating());
+
                 if (it.getPoster() != null) {
                     Glide.with(this)
                             .load(it.getPoster())
@@ -60,10 +62,28 @@ public class DetailFilmActivity extends AppCompatActivity {
 
         viewModel.getIsLoading().observe(this, isLoading -> {
             if (isLoading) {
+                if (getSupportActionBar() != null) {
+                    getSupportActionBar().hide();
+                }
+
                 binding.progressBarDetail.setVisibility(View.VISIBLE);
+                binding.scrollViewContent.setVisibility(View.INVISIBLE);
             } else {
+                if (getSupportActionBar() != null) {
+                    getSupportActionBar().show();
+                    String title = getIntent().getStringExtra(EXTRA_TITLE);
+                    getSupportActionBar().setTitle(title);
+                }
+
                 binding.progressBarDetail.setVisibility(View.GONE);
+                binding.scrollViewContent.setVisibility(View.VISIBLE);
             }
         });
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
     }
 }

@@ -6,6 +6,10 @@
         <item name="android:statusBarColor">@color/gray_dark</item>
     </style>
 
-    <color name="search_icon_color">@color/gray_light</color>
+    <color name="icon_color">@color/gray_light</color>
+    <color name="text_color">@color/white</color>
 
+    <style name="Theme.BelajarAPI.Detail" parent="Theme.BelajarAPI">
+        <item name="android:statusBarColor">@color/gray_dark</item>
+    </style>
 </resources>
