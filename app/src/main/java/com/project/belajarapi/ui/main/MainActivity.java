@@ -17,6 +17,7 @@ import com.project.belajarapi.databinding.ActivityMainBinding;
 import com.project.belajarapi.ui.detail.DetailFilmActivity;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -90,11 +91,19 @@ public class MainActivity extends AppCompatActivity {
                 binding.tvNoMovies.setVisibility(View.GONE);
             }
         });
+
+        binding.tvStartMessage.setText(getGreetingBasedOnTime());
     }
 
     private void searchFilm() {
         String query = binding.etQuery.getText().toString().trim();
-        if (query.isEmpty()) return;
+
+        if (query.isEmpty()) {
+            binding.tvStartMessage.setVisibility(View.VISIBLE);
+            binding.tvNoMovies.setVisibility(View.GONE);
+            adapter.setListFilm(new ArrayList<>());
+            return;
+        }
 
         adapter.setListFilm(new ArrayList<>());
 
@@ -108,5 +117,23 @@ public class MainActivity extends AppCompatActivity {
         } else {
             binding.progressBar.setVisibility(View.GONE);
         }
+    }
+
+    public String getGreetingBasedOnTime() {
+        Calendar calendar = Calendar.getInstance();
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        String greeting;
+
+        if (hour >= 0 && hour < 11) {
+            greeting = "Mau cari film apa pagi ini?\n😊";
+        } else if (hour >= 11 && hour < 15) {
+            greeting = "Mau cari film apa siang ini?\n😊";
+        } else if (hour >= 15 && hour < 18) {
+            greeting = "Mau cari film apa sore ini?\n😊";
+        } else {
+            greeting = "Mau cari film apa malam ini?\n😊";
+        }
+
+        return greeting;
     }
 }
