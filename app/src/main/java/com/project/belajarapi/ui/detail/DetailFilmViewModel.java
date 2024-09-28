@@ -31,26 +31,24 @@ public class DetailFilmViewModel extends ViewModel {
 
         Log.d("DetailFilmViewModel", "setFilmDetail called with imdbID: " + imdbID);
         RetrofitClient.getApiService()
-                .getFilmDetail(apiKey, imdbID, "full")
-                .enqueue(new Callback<DetailFilmResponse>() {
-                    @Override
-                    public void onResponse(Call<DetailFilmResponse> call, Response<DetailFilmResponse> response) {
-                        isLoading.setValue(false);
-                        if (response.isSuccessful() && response.body() != null) {
-                            detailFilm.postValue(response.body());
-                            Log.d("DetailFilmViewModel", "API call successful, detailFilm updated");
-                        }else {
-                            Log.d("DetailFilmViewModel", "API call unsuccessful, response: " + response);
-                        }
+            .getFilmDetail(apiKey, imdbID, "full")
+            .enqueue(new Callback<DetailFilmResponse>() {
+                @Override
+                public void onResponse(Call<DetailFilmResponse> call, Response<DetailFilmResponse> response) {
+                    isLoading.setValue(false);
+                    if (response.isSuccessful() && response.body() != null) {
+                        detailFilm.postValue(response.body());
+                        Log.d("DetailFilmViewModel", "API call successful, detailFilm updated");
+                    }else {
+                        Log.d("DetailFilmViewModel", "API call unsuccessful, response: " + response);
                     }
+                }
 
-                    @Override
-                    public void onFailure(Call<DetailFilmResponse> call, Throwable t) {
-                        Log.e("API Call", "Failure: " + t.getMessage());
-                        isLoading.setValue(false);
-                    }
-                });
+                @Override
+                public void onFailure(Call<DetailFilmResponse> call, Throwable t) {
+                    Log.e("API Call", "Failure: " + t.getMessage());
+                    isLoading.setValue(false);
+                }
+            });
     }
-
-
 }

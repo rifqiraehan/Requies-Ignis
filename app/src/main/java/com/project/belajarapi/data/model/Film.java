@@ -19,7 +19,6 @@ public class Film {
     @SerializedName("Response")
     private String Response;
 
-    // Getters and setters
     public String getTitle() {
         return title;
     }
